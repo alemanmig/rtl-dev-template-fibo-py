@@ -60,12 +60,23 @@ DPI_FILE                ?=
 #   make build-dpi-py DPI_BACKEND=python
 #   make compile DPI_BACKEND=python && make sim DPI_BACKEND=python
 DPI_BACKEND ?= cpp
+PYTHON3     ?= python3
 ifeq ($(DPI_BACKEND),python)
   DPI_LIB_NAME_RUN ?= libdpi_py
   # Embedded CPython needs to find fibonacci_model.py; RUN_SIM cd's into
   # JOB_DIR before invoking simv, so PYTHONPATH/cwd tricks don't help here —
   # the .cpp shim reads this env var explicitly instead.
   export DPI_PY_SRC_DIR := $(GIT_DIR)/verification/common/dpi/src
+  # libdpi_py.so links against libpython3.x.so (e.g. via a conda env's
+  # python3-config --embed), but that lib usually is NOT on the default
+  # dynamic-linker search path, and `conda activate` does NOT add
+  # $CONDA_PREFIX/lib to LD_LIBRARY_PATH by default. Without this, simv finds
+  # libdpi_py.so itself (via the absolute -sv_lib path) but then fails to
+  # open ITS dependency: "libpython3.x.so.1.0: cannot open shared object
+  # file". Resolve the prefix from the same PYTHON3 used in build-dpi-py and
+  # prepend its lib dir explicitly so it doesn't depend on shell state.
+  PYTHON3_PREFIX := $(shell $(PYTHON3)-config --prefix 2>/dev/null)
+  export LD_LIBRARY_PATH := $(PYTHON3_PREFIX)/lib:$(LD_LIBRARY_PATH)
 else
   DPI_LIB_NAME_RUN ?= libdpi
 endif
