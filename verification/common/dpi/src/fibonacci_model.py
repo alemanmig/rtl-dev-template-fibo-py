@@ -32,7 +32,7 @@ MASK = (1 << WIDTH) - 1
 # for the lifetime of the simv process / embedded interpreter).
 _a_q = 0
 _b_q = 1 & MASK
-
+ 
 
 def step(rst_n: int, enable: int) -> int:
     """Advance one clock cycle; mirrors Fibonacci::step(). Returns fib_out

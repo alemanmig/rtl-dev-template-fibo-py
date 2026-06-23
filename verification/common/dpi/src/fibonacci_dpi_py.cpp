@@ -20,7 +20,7 @@
 //                     (verification/common/dpi/src), so the embedded
 //                     interpreter can `import fibonacci_model`. project.mk
 //                     exports this automatically when DPI_BACKEND=python.
-// [Status]        experimental (DPI_BACKEND=python)
+// [Status]        experimental (DPI_BACKEND=python) 
 //==============================================================================
 
 #include "svdpi.h"
