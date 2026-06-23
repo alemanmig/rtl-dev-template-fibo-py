@@ -1,0 +1,9 @@
+Segmentation fault
+core dumped
+Assertion.*failed
+TIMEOUT
+TEST FAILED
+FAILED:[[:space:]]*[1-9][0-9]*
+TEST\(S\) FAILED
+^\[FAIL\]
+\[SVA\].*FAIL

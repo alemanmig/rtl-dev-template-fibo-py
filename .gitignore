@@ -1,0 +1,38 @@
+##=============================================================================
+## [Filename]       .gitignore
+## [Project]        -
+## [Author]         Ciro Bermudez - cirofabian.bermudez@gmail.com
+## [Language]       Git
+## [Created]        Dec 2025
+## [Modified]       -
+## [Description]    Main .gitignore file for the Git-repository
+## [Notes]          -
+## [Status]         stable
+## [Revisions]      -
+##=============================================================================
+
+# Directories
+work/
+
+# Files
+Makefile
+
+# C/C++
+bin/
+obj/
+lib/
+*.o
+*.lib
+*.exe
+
+# Python
+.venv/
+venv/
+
+# Regression
+regression.mk
+
+# Synopsys
+setup_synopsys_eda.tcsh
+setup_synopsys_eda.sh
+*.rc

@@ -1,0 +1,11 @@
++incdir+rtl
++incdir+sva
++incdir+tests
++incdir+tb
++incdir+sv
+sv/config_pkg.sv
+sv/vif_if.sv
+tests/test.sv
+sva/sva.sv
+sva/fcover.sv
+tb/tb.sv
